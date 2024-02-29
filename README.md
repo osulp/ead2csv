@@ -1,7 +1,7 @@
 
 # EAD2CSV: An XSL Transformation
 
-The core of this repository is an XSLT 2.0 stylesheet which extracts the contents of specified elements from Encoded Archival Description (EAD) XML archival finding aids, at the collection level and for each component description, and outputs the data to a tabular data text format (CSV). It focuses on the Archival Description (`archdesc` metadata delements)
+The core of this repository is an XSLT 2.0 stylesheet which extracts the contents of specified elements from Encoded Archival Description (EAD) XML archival finding aids, at the collection level and for each component description, and outputs the data to a tabular data text format (CSV). It focuses on the Archival Description (`archdesc`) metadata delements.
 
 Rendering finding aid data in a tabular, plain text format makes it more accessible to archives staff who may review, sort, filter, and otherwise manipulate the corpus as a whole using familiar tools. As an added benefit, it also makes it accessible as plain text for computational analysis using a variety of tools. 
 
