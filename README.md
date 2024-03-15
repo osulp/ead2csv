@@ -1,9 +1,19 @@
 
 # EAD2CSV: An XSL Transformation
 
-The core of this repository is an XSLT 2.0 stylesheet which extracts the contents of specified elements from Encoded Archival Description (EAD) XML archival finding aids, at the collection level and for each component description, and outputs the data to a tabular data text format (CSV). It focuses on the Archival Description (`archdesc`) metadata delements.
+The core of this repository is an XSLT 2.0 stylesheet which extracts the contents of specified elements from Encoded Archival Description (EAD) XML archival finding aids, at the collection level and for each component description, and outputs the data to a tabular data text format (CSV). It focuses on the Archival Description (`archdesc`) metadata elements.
 
+One row in the CSV output represents an object at any level of description:
+
+- collection
+- subgrp
+- series 
+- subseries
+- file 
+- item
+  
 Rendering finding aid data in a tabular, plain text format makes it more accessible to archives staff who may review, sort, filter, and otherwise manipulate the corpus as a whole using familiar tools. As an added benefit, it also makes it accessible as plain text for computational analysis using a variety of tools. 
+
 
 ## Setup
 
@@ -58,4 +68,30 @@ To transform EAD XML with this stylesheet, the user may run in an XSLT processin
 
 ## EAD element to CSV field mapping
 
-{coming soon}
+Notes:
+
+- All collection-level XPaths are descendants of `/ead/archdesc` except as noted
+- All DSC-level XPaths are descendants of `/ead/archdesc/dsc//*[did]` except as noted
+- "CID" indicates the Collection Information Document; if the document is not provided, fields that use CID mappings will be blank
+
+| Field | XPath - Collection | XPath - DSC Component |
+|---|---|---|
+| Identifier | _derive from finding aid XML filename_ | _derive from finding aid XML filename_ |
+| Collection ID | `did/unitid` | _copy of parent Collection ID_ |
+| Collection Title | `did/unittitle` | _copy of parent Collection Title_ |
+| Description Level | CID: Description Level | CID: Description Level (for parent collection) |
+| Collection Type | CID: Collection Type | CID: Collection Type (for parent collection) |
+| Unit Level | _string:_ 'collection' | `@level` |
+| Unit ID | `did/unitid` | `did/unitid` |
+| Extent | `did/physdesc/extent` | _string:_ 'N/A' |
+| Container ID | _string:_ 'N/A' | `did/container` |
+| Unit Title | `did/unittitle` | `did/unittitle` |
+| Creator | `did/origination/*[@role='creator']` | _string:_ 'N/A' |
+| Date | `did/unitdate` | `did/unitdate` |
+| Abstract | `did/abstract` | _string:_ 'N/A' |
+| Scope and Content | `scopecontent/*` | `scopecontent/*` |
+| Biographical Note | `bioghist/*` | _string:_ 'N/A' |
+| Subjects | `controlaccess/controlaccess/subject` | _string:_ 'N/A' |
+| Personal Names | `controlaccess/controlaccess/persname` | _string:_ 'N/A' |
+| Corporate Names | `controlaccess/controlaccess/corpname` | _string:_ 'N/A' |
+| Geographics | `controlaccess/controlaccess/geogname` | _string:_ 'N/A' |
