@@ -24,7 +24,7 @@ The use case for which this stylesheet was developed was based on EAD XML files 
 - EAD XML files are located in a single directory
 - Each EAD XML file represents one archival collection
 - Each collection has a unique identifier
-- EAD files are named using the convention {identifier}.xml
+- EAD files are named using the convention `{identifier}.xml`
 - EAD XML files validate according to the [EAD 2002 W3C Schema](http://www.loc.gov/ead/ead.xsd)
 
 
